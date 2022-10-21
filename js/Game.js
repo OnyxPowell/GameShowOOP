@@ -74,5 +74,20 @@ class Game {
         }
     };
 
+   handleInteraction(e) {
+    e.target.disabled = true;
+    if (game.activePhrase.checkLetter(e.target.innerHTML)) {
+        e.target.classList.add('chosen')
+        game.activePhrase.showMatchedLetter(e.target.innerHTML)
+        if (game.checkForWin()) {
+            game.gameOver(true);
+        }
+
+    } else {
+        e.target.classList.add('wrong')
+        game.removeLife()
+    }
+};
+
 
 }

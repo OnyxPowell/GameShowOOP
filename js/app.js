@@ -26,23 +26,12 @@ document.querySelector('#btn__reset').addEventListener('click', function (e) {
 
 })
 
+
 const keys = document.querySelectorAll('.key');
 for (let i = 0; i < keys.length; i++) {
-    keys[i].addEventListener("click", handleInteraction);
+    keys[i].addEventListener("click", (e)=>{
+    game.handleInteraction(e)
+    });
 }
 
 
-function handleInteraction(e) {
-    e.target.disabled = true;
-    if (game.activePhrase.checkLetter(e.target.innerHTML)) {
-        e.target.classList.add('chosen')
-        game.activePhrase.showMatchedLetter(e.target.innerHTML)
-        if (game.checkForWin()) {
-            game.gameOver(true);
-        }
-
-    } else {
-        e.target.classList.add('wrong')
-        game.removeLife()
-    }
-}
